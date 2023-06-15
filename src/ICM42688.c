@@ -16,7 +16,7 @@
 #include <zephyr/drivers/i2c.h>
 #include "ICM42688.h"
 
-float _aRes, _gRes;
+float _gRes;
 
 uint8_t icm_getChipID(struct i2c_dt_spec dev_i2c)
 {
@@ -30,21 +30,14 @@ float icm_getAres(uint8_t Ascale) {
     {
         // Possible accelerometer scales (and their register bit settings) are:
         case AFS_2G:
-            _aRes = 2.0f/32768.0f;
-            return _aRes;
-            break;
+            return 2.0f/32768.0f;
         case AFS_4G:
-            _aRes = 4.0f/32768.0f;
-            return _aRes;
-            break;
+            return 4.0f/32768.0f;
         case AFS_8G:
-            _aRes = 8.0f/32768.0f;
-            return _aRes;
-            break;
+            return 8.0f/32768.0f;
         case AFS_16G:
-            _aRes = 16.0f/32768.0f;
-            return _aRes;
-            break;
+        default:// I assume this is a safe default given the comment
+            return 16.0f/32768.0f;
     }
 }
 
@@ -53,37 +46,22 @@ float icm_getGres(uint8_t Gscale) {
     {
         // Possible gyro scales (and their register bit settings) are:
         case GFS_15_625DPS:
-            _gRes = 15.625f/32768.0f;
-            return _gRes;
-            break;
+            return 15.625f/32768.0f;
         case GFS_31_25DPS:
-            _gRes = 31.25f/32768.0f;
-            return _gRes;
-            break;
+            return 31.25f/32768.0f;
         case GFS_62_50DPS:
-            _gRes = 62.5f/32768.0f;
-            return _gRes;
-            break;
+            return 62.5f/32768.0f;
         case GFS_125DPS:
-            _gRes = 125.0f/32768.0f;
-            return _gRes;
-            break;
+            return 125.0f/32768.0f;
         case GFS_250DPS:
-            _gRes = 250.0f/32768.0f;
-            return _gRes;
-            break;
+            return 250.0f/32768.0f;
         case GFS_500DPS:
-            _gRes = 500.0f/32768.0f;
-            return _gRes;
-            break;
+            return 500.0f/32768.0f;
         case GFS_1000DPS:
-            _gRes = 1000.0f/32768.0f;
-            return _gRes;
-            break;
+            return 1000.0f/32768.0f;
         case GFS_2000DPS:
-            _gRes = 2000.0f/32768.0f;
-            return _gRes;
-            break;
+        default: // I assume this is a safe default given the comment
+            return 2000.0f/32768.0f;
     }
 }
 

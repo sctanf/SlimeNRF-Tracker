@@ -1,3 +1,5 @@
+#ifndef MY_MATH_LIB_MATRIX_H
+#define MY_MATH_LIB_MATRIX_H
 void Multiply_Self_Transpose(double *, double *, int, int);
 void Get_Submatrix(double *, int, int, double *, int, int, int);
 int Choleski_LU_Decomposition(double *, int);
@@ -27,3 +29,4 @@ void Calculate_Eigenvectors(double *, double *, double[], double[], int);
 void Complex_Division(double, double, double, double, double *, double *);
 
 void Transpose_Square_Matrix(double *, int);
+#endif
