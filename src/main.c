@@ -99,6 +99,7 @@ uint8_t MODR = MODR_200Hz, MBW = MBW_200Hz, MSET = MSET_2000; // 200hz bw (burn 
 
 void main(void)
 {
+	gpio_pin_configure_dt(&led, GPIO_OUTPUT);
 	gpio_pin_set_dt(&led, 1); // Boot LED (burn power)
 	k_msleep(11);														 // Wait for start up (1ms for ICM, 10ms for MMC -> 10ms)
 	uint8_t ICM42688ID = icm_getChipID(main_imu);						 // Read CHIP_ID register for ICM42688
@@ -119,7 +120,6 @@ void main(void)
 
 	while (1)
 	{
-		gpio_pin_set_dt(&led, 1); // Boot LED (burn power)
 		int batt_mV;
 		batt_pptt = read_batt_mV(&batt_mV);
 		LOG_INF("BAT: %d", batt_mV);
