@@ -97,8 +97,11 @@ uint8_t Ascale = AFS_8G, Gscale = GFS_2000DPS, AODR = AODR_200Hz, GODR = GODR_1k
  */
 uint8_t MODR = MODR_200Hz, MBW = MBW_200Hz, MSET = MSET_2000; // 200hz bw (burn power)
 
+//#define BURN_TEST
+
 void main(void)
 {
+#ifdef BURN_TEST
 	gpio_pin_configure_dt(&led, GPIO_OUTPUT);
 	gpio_pin_set_dt(&led, 1); // Boot LED (burn power)
 	k_msleep(11);														 // Wait for start up (1ms for ICM, 10ms for MMC -> 10ms)
@@ -117,7 +120,7 @@ void main(void)
 		mmc_SET(main_mag);													 // "deGauss" magnetometer
 		mmc_init(main_mag, MODR, MBW, MSET);								 // configure
 	}
-
+#endif
 	while (1)
 	{
 		int batt_mV;
